@@ -7,7 +7,9 @@ public class MyClass {
     private static int[] array = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
     private static int[] selectionSortArray = {61, 67, 71, 73, 2, 3, 53, 59, 79, 83, 89, 97, 5, 7, 11, 13, 37, 41, 43, 47, 17, 19, 23, 29, 31};
     private static int[] insertionArray = {-5, -11, 0, 6, 7, 5};//{22, 11, 99, 88, 9, 7, 42}
-    private static int[] mergeArray ={13, -7, 12, 14, 0, -6, 9, 0};// {14, 7, 3, 12, 9, 11, 6, 2};
+    private static int[] mergeArray = {13, -7, 12, 14, 0, -6, 9, 0};// {14, 7, 3, 12, 9, 11, 6, 2};
+
+    private static int[] quickArray = {14, 7, 3, 12, 9, 11, 6, 2};
 
     public static void main(String[] args) {
 
@@ -43,6 +45,11 @@ public class MyClass {
         System.out.println("\nBefore Merge sort\n:" + Arrays.toString(mergeArray));
         mergeSort(mergeArray, 0, mergeArray.length - 1);
         System.out.println("After Merge sort\n:" + Arrays.toString(mergeArray));
+
+        //Quick sort testing
+        System.out.println("\nBefore Quick sort\n:" + Arrays.toString(quickArray));
+        quickSort(quickArray, 0, quickArray.length - 1);
+        System.out.println("After Quick sort\n:" + Arrays.toString(quickArray));
     }
 
 
@@ -238,4 +245,29 @@ public class MyClass {
     }
     //-----------Merge Sort Implementation -----------
 
+
+    //-----------Quick Sort Implementation -----------
+
+    private static void quickSort(int[] array, int startIndex, int rightIndex) {
+        if (startIndex < rightIndex) {
+            int pivot = partition(array, startIndex, rightIndex);
+            quickSort(array, startIndex, pivot - 1);
+            quickSort(array, pivot + 1, rightIndex);
+        }
+    }
+
+    private static int partition(int[] array, int startIndex, int rightIndex) {
+        int q = startIndex;
+        for (int j = startIndex; j < rightIndex; j++) {
+            if (array[j] <= array[rightIndex]) {
+                swap(array, q, j);
+                q++;
+            }
+        }
+        swap(array, q, rightIndex);
+        return q;
+    }
+
+
+    //-----------Quick Sort Implementation -----------
 }
