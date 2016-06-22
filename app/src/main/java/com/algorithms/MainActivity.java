@@ -11,6 +11,7 @@ public class MainActivity extends AppCompatActivity {
     private final String TAG = MainActivity.class.getSimpleName();
     private int[] array = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97};
     private int[] selectionSortArray = {61, 67, 71, 73, 2, 3, 53, 59, 79, 83, 89, 97, 5, 7, 11, 13, 37, 41, 43, 47, 17, 19, 23, 29, 31};
+    private int[] insertionArray = {22, 11, 99, 88, 9, 7, 42};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,12 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "Before selection sort\n:" + Arrays.toString(selectionSortArray));
         selectionSort(selectionSortArray);
         Log.i(TAG, "After selection sort\n:" + Arrays.toString(selectionSortArray));
+
+        //Insertion sort testing
+        Log.i(TAG, "Before insertion sort\n:" + Arrays.toString(insertionArray));
+        insertionSort(insertionArray);
+        Log.i(TAG, "After insertion sort\n:" + Arrays.toString(insertionArray));
+
 
     }
 
@@ -79,4 +86,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
     //-------------Selection Sort---------------
+
+    //-------------Insertion Sort---------------
+    private void insert(int[] array, int rightIndex, int value) {
+        int index = 0;
+        for (index = rightIndex; index >= 0 && value < array[index]; index--) {
+            array[index + 1] = array[index];
+        }
+        array[index + 1] = value;
+    }
+
+    private void insertionSort(int[] array) {
+        for (int i = 1; i < array.length; i++) {
+            insert(array, i - 1, array[i]);
+        }
+    }
+    //-------------Insertion Sort---------------
 }
